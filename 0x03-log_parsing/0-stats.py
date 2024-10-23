@@ -27,15 +27,15 @@ try:
         parts = line.split()
         if len(parts) != 9:
             continue
-
+        
         try:
             ip = parts[0]
-            status_code = int(parts[-2])
+            status_code = parts[-2]
             file_size = int(parts[-1])
-
+            
             total_size += file_size
-            if status_code in status_codes:
-                status_codes[status_code] += 1
+            if int(status_code) in status_codes:
+                status_codes[int(status_code)] += 1
 
         except ValueError:
             continue
@@ -44,10 +44,10 @@ try:
         if line_count == 10:
             print_stats(total_size, status_codes)
             line_count = 0
-
 except KeyboardInterrupt:
     print_stats(total_size, status_codes)
-    raise
+    sys.exit(0)
 
 # Ensure printing the final stats even if the loop ends naturally
 print_stats(total_size, status_codes)
+
