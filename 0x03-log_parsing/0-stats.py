@@ -44,6 +44,7 @@ try:
             line_count = 0
 except KeyboardInterrupt:
     print_stats(total_size, status_codes)
-    raise
+    sys.exit(0)
 
+# Ensure printing the final stats even if the loop ends naturally
 print_stats(total_size, status_codes)
