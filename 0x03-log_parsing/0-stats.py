@@ -25,16 +25,18 @@ signal.signal(signal.SIGINT, signal_handler)
 try:
     for line in sys.stdin:
         parts = line.split()
-        if len(parts) < 7:
+        if len(parts) != 9:
             continue
-        ip = parts[0]
-        status_code = parts[-2]
-        file_size = parts[-1]
-
+        
         try:
-            total_size += int(file_size)
+            ip = parts[0]
+            status_code = parts[-2]
+            file_size = int(parts[-1])
+            
+            total_size += file_size
             if int(status_code) in status_codes:
                 status_codes[int(status_code)] += 1
+
         except ValueError:
             continue
 
@@ -44,7 +46,7 @@ try:
             line_count = 0
 except KeyboardInterrupt:
     print_stats(total_size, status_codes)
-    sys.exit(0)
+    raise
 
 # Ensure printing the final stats even if the loop ends naturally
 print_stats(total_size, status_codes)
