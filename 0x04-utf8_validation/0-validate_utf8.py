@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module to validate UTF-8 encoding"""
 
+
 def validUTF8(data):
     """
     Determines if a given data set represents a valid UTF-8 encoding.
@@ -24,7 +25,6 @@ def validUTF8(data):
 
             if number_of_bytes == 1 or number_of_bytes > 4:
                 return False
-
         else:
             if not (binary_rep[0] == '1' and binary_rep[1] == '0'):
                 return False
