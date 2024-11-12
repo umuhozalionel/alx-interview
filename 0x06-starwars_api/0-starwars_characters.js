@@ -9,7 +9,7 @@ request(apiUrl, function (error, response, body) {
     console.error('Error:', error);
     return;
   }
-  
+
   const characters = JSON.parse(body).characters;
   const promises = characters.map((character) => {
     return new Promise((resolve, reject) => {
