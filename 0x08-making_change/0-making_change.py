@@ -20,7 +20,7 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
-    # Initialize a list to hold the minimum coins needed for each amount
+    # Initialize a list to hold the minimum coins needed for each amount up to total
     min_coins = [float('inf')] * (total + 1)
     min_coins[0] = 0
 
@@ -30,7 +30,4 @@ def makeChange(coins, total):
                 min_coins[i] = min(min_coins[i],
                                    min_coins[i - coin] + 1)
 
-    if min_coins[total] != float('inf'):
-        return min_coins[total]
-    else:
-        return -1
+    return min_coins[total] if min_coins[total] != float('inf') else -1
