@@ -33,11 +33,16 @@ def isWinner(x, nums):
     wins = {"Maria": 0, "Ben": 0}
 
     for n in nums:
+        if n < 2:
+            wins["Ben"] += 1
+            continue
+
         primes = sieve(n)
         rounds = [0] * (n + 1)
         for prime in primes:
             for multiple in range(prime, n + 1, prime):
                 rounds[multiple] = 1
+
         if sum(rounds) % 2 == 0:
             wins["Ben"] += 1
         else:
